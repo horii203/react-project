@@ -1,15 +1,11 @@
-import { useState } from "react";
+import MyButton from "./components/MyButton";
+
 function App() {
-  const [name, setName] = useState("");
   return (
     <div>
-      <h1>名前入力</h1>
-      <input
-        type="text"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-      <p>こんにちは、{name}さん</p>
+      <h1>ホーム</h1>
+      <MyButton text="送信" />
+      <MyButton text="キャンセル" />
     </div>
   );
 }
