@@ -1,45 +1,14 @@
-import { useEffect, useState } from "react";
-
-type User = {
-  id: number;
-  name: string;
-  email: string;
-};
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import About from "./pages/About";
 function App() {
-  const [users, setUsers] = useState<User[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-  useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/users")
-      .then((res) => res.json())
-      .then((data) => {
-        setUsers(data);
-        setLoading(false);
-      })
-
-      .catch(() => {
-        setError("データの取得に失敗しました");
-        setLoading(false);
-      });
-  }, []);
   return (
-    <div>
-      <h1>ユーザー一覧</h1>
-      {loading ? (
-        <p>読み込み中...</p>
-      ) : error ? (
-        <p>{error}</p>
-      ) : (
-        <ul>
-          {users.map((user) => (
-            <li key={user.id}>
-              {user.name}：{user.email}
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 export default App;
