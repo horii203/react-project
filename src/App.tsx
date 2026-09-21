@@ -1,18 +1,15 @@
+import { useState } from "react";
 function App() {
-  const users = [
-    { id: 1, name: "田中太郎" },
-    { id: 2, name: "佐藤花子" },
-    { id: 3, name: "鈴木一郎" },
-  ];
-
+  const [name, setName] = useState("");
   return (
     <div>
-      <h1>ユーザー一覧</h1>
-      <ul>
-        {users.map((user) => (
-          <li key={user.id}>{user.name}</li>
-        ))}
-      </ul>
+      <h1>名前入力</h1>
+      <input
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+      <p>こんにちは、{name}さん</p>
     </div>
   );
 }
