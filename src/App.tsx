@@ -1,11 +1,18 @@
-import { useState } from "react";
-
 function App() {
-  const [isLogon, setIsLogin] = useState(false);
+  const users = [
+    { id: 1, name: "田中太郎" },
+    { id: 2, name: "佐藤花子" },
+    { id: 3, name: "鈴木一郎" },
+  ];
+
   return (
     <div>
-      <h1>{isLogon ? "ログインしています" : "ログインしていません"}</h1>
-      <button onClick={() => setIsLogin(!isLogon)}>ログイン状態変更</button>
+      <h1>ユーザー一覧</h1>
+      <ul>
+        {users.map((user) => (
+          <li key={user.id}>{user.name}</li>
+        ))}
+      </ul>
     </div>
   );
 }
