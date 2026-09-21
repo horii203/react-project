@@ -9,11 +9,17 @@ type User = {
 function App() {
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/users")
       .then((res) => res.json())
       .then((data) => {
         setUsers(data);
+        setLoading(false);
+      })
+
+      .catch(() => {
+        setError("データの取得に失敗しました");
         setLoading(false);
       });
   }, []);
@@ -22,6 +28,8 @@ function App() {
       <h1>ユーザー一覧</h1>
       {loading ? (
         <p>読み込み中...</p>
+      ) : error ? (
+        <p>{error}</p>
       ) : (
         <ul>
           {users.map((user) => (
